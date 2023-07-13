@@ -1,8 +1,15 @@
-from prefect import flow
+from prefect import flow,task
+
+
+@task
+def create_message():
+  msg = 'Hello from prefect!!'
+  return msg
 
 
 @flow
 def hello_world():
-  print('Hello from prefect!!')
+  task_message = create_message()
+  print(task_message)
 
 hello_world()
